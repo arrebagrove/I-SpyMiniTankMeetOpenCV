@@ -35,9 +35,9 @@ void SpyMini::connectToTank(){
 
 	printf("Socket created.\n");
 
-	server.sin_addr.s_addr = inet_addr("127.0.0.1");
+	server.sin_addr.s_addr = inet_addr("10.10.1.1");
 	server.sin_family = AF_INET;
-	server.sin_port = htons(1400);
+	server.sin_port = htons(8150);
 	//Connect to remote server
 	if (connect(s, (struct sockaddr *)&server, sizeof(server)) < 0)
 	{

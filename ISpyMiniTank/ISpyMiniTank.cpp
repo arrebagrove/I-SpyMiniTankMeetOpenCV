@@ -17,11 +17,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	SpyMini robot;
 
 	robot.connectToTank();
-	VideoCapture cap(0);//for debug purpose i use webcam 
+	//VideoCapture cap(0);//for debug purpose i use webcam 
 	
 	//i spy mini tank connect stream mjpeg on http://10.10.1.1:8196
-	//VideoCapture cap;
-	//	cap.open("http://10.10.1.1:8196/?dummy=param.mjpg");
+	VideoCapture cap;
+		cap.open("http://10.10.1.1:8196/?dummy=param.mjpg");
 
 	if (!cap.isOpened())
 	{
@@ -57,7 +57,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//Create a black image with the size as the camera output
 	Mat imgLines = Mat::zeros(imgTmp.size(), CV_8UC3);
-
+	boolean taskDone=false;
 	while (true)
 	{
 		Mat imgOriginal;
@@ -65,7 +65,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		bool bSuccess = cap.read(imgOriginal);// read a new frame from video
 		int x = imgOriginal.cols / 2;
 		int y = imgOriginal.rows / 2;
-		int w = 100;
+		int w = 300;
 		int h = 500;
 		int left_side = x - w / 2;
 		int right_side = left_side + w;
@@ -103,16 +103,25 @@ int _tmain(int argc, _TCHAR* argv[])
 			if (posX > left_side && posX<right_side)//pas di tengah
 			{//di dalam kotak
 				cout << left_side << ">" << posX << ">" << right_side << endl;
-				//robot.stop();
+				robot.stop();
 
 			}
 			else if (posX < left_side){
 				cout << left_side << "<" << posX << " sebelah kiri target" << endl;
-				//robot.turnLeft();
+				if (!taskDone){
+					robot.turnRigt();
+					taskDone = true;
+
+				}
+				
 			}
 			else if (posX > right_side){
 				cout << right_side << ">" << posX << " sebelah kanan target" << endl;
-				//robot.turnRigt();
+				if (!taskDone){
+					robot.turnLeft();
+					taskDone = true;
+
+				}
 			}
 
 			iLastX = posX;
