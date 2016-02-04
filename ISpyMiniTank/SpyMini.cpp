@@ -9,8 +9,8 @@
 #define FORWARD "1121"
 #define BACKWARD "1222"
 #define STOP "1020"
-#define TURNLEFT "1122"
-#define TURNRIGHT "1221"
+#define TURNLEFT "1120"
+#define TURNRIGHT "1021"
 
 
 SpyMini::SpyMini(){

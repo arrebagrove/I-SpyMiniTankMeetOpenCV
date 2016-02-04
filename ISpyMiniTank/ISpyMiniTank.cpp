@@ -28,11 +28,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "Cannot open the video cam" << endl;
 		return -1;
 	}
+		namedWindow("Control", CV_WINDOW_AUTOSIZE);
 
 	int iLowH = 0;
-	int iHighH = 64;
+	int iHighH = 97;
 
-	int iLowS = 126;
+	int iLowS = 47;
 	int iHighS = 238;
 
 	int iLowV = 7;
@@ -108,20 +109,20 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 			else if (posX < left_side){
 				cout << left_side << "<" << posX << " sebelah kiri target" << endl;
-				if (!taskDone){
+			//	if (!taskDone){
 					robot.turnRigt();
 					taskDone = true;
 
-				}
+//				}
 				
 			}
 			else if (posX > right_side){
 				cout << right_side << ">" << posX << " sebelah kanan target" << endl;
-				if (!taskDone){
+	//			if (!taskDone){
 					robot.turnLeft();
 					taskDone = true;
 
-				}
+		//		}
 			}
 
 			iLastX = posX;
