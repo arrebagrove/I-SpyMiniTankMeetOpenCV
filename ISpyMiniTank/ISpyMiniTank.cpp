@@ -100,17 +100,19 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
-			if (posX > left_side && posX<right_side)
+			if (posX > left_side && posX<right_side)//pas di tengah
 			{//di dalam kotak
 				cout << left_side << ">" << posX << ">" << right_side << endl;
+				//robot.stop();
 
 			}
 			else if (posX < left_side){
 				cout << left_side << "<" << posX << " sebelah kiri target" << endl;
+				//robot.turnLeft();
 			}
 			else if (posX > right_side){
 				cout << right_side << ">" << posX << " sebelah kanan target" << endl;
-
+				//robot.turnRigt();
 			}
 
 			iLastX = posX;
